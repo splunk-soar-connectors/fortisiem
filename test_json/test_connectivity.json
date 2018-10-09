@@ -1,0 +1,49 @@
+{
+    "asset_id": "12",
+    "environment_variables": {
+        "NO_PROXY": {
+            "type": "text",
+            "value": "127.0.0.1"
+        }
+    },
+    "connector_run_id": 1535740490941,
+    "parameters": [],
+    "container_id": "0",
+    "user_session_token": "6hh30u8vzxakt000nr7gfoagl0th225h",
+    "debug_level": 3,
+    "dec_key": "12",
+    "app_config": null,
+    "action": "test connectivity",
+    "identifier": "test_connectivity",
+    "config": {
+        "username": "admin",
+        "password": "ivfoSMRtucCoMfg5ZVG2ug==",
+        "endpoint": "10.1.20.13",
+        "appname": "-",
+        "_reserved_environment_variables": {},
+        "ingest": {
+            "process_missed_jobs": false,
+            "cron": "",
+            "start_time_epoch_utc": 1534457272,
+            "interval_mins": "15",
+            "poll": true,
+            "container_label": "events"
+        },
+        "server": "10.1.20.13",
+        "_reserved_credential_management": {
+            "fields": [],
+            "settings": {
+                "authorized_start": false,
+                "config": {
+                    "verify_cert": false,
+                    "appname": "phantom"
+                },
+                "manager": ""
+            }
+        },
+        "directory": "fortisiem_76e8f71b-753c-4f3f-a6a9-89daed7077e0",
+        "org": "super",
+        "app_version": "1.0.0",
+        "main_module": "fortisiem_connector.pyc"
+    }
+}
