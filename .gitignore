@@ -1,2 +1,4 @@
 *.pyc
 *.bak*
+.DS_Store
+test_json/*
