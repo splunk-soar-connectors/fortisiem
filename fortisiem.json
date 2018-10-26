@@ -1,7 +1,7 @@
 {
     "appid": "76e8f71b-753c-4f3f-a6a9-89daed7077e0",
     "name": "FortiSIEM",
-    "description": "A Phantom integration for Fortinet's FortiSIEM: Powerful Security Information and Event Management. Rapid detection and remediation of security events. Security, performance, and compliance management.",
+    "description": "Integration with Fortinet's FortiSIEM: Powerful Security Information and Event Management. Rapid detection and remediation of security events. Security, performance, and compliance management",
     "type": "siem",
     "product_vendor": "Fortinet",
     "logo": "fortisiem.png",
