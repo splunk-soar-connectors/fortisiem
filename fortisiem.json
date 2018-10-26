@@ -16,11 +16,6 @@
     "main_module": "fortisiem_connector.pyc",
     "min_phantom_version": "3.5.180",
     "app_wizard_version": "1.0.0",
-    "pip_dependencies": {
-        "pypi": [
-          {"module": "requests"}
-        ]
-      },
     "configuration": {
       "server": {
           "description": "IP/Hostname",
