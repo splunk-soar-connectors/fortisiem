@@ -20,7 +20,7 @@ def create_null_discovery_request():
     return doc.toxml()
 
 
-def create_query_xml():
+def create_query_xml(incidentCategories):
     """
     <?xml version="1.0" ?>
     <Reports>
@@ -39,7 +39,7 @@ def create_query_xml():
             </ReportInterval>
             <PatternClause window="3600">
                 <SubPattern displayName="Incidents" name="Incidents">
-                <SingleEvtConstr>phEventCategory=1</SingleEvtConstr>
+                <SingleEvtConstr>phEventCategory=1 AND phIncidentCategory = << incidentCategories>> </SingleEvtConstr>
                 </SubPattern>
             </PatternClause>
             <RelevantFilterAttr/>
@@ -96,7 +96,18 @@ def create_query_xml():
     single = doc.createElement("SingleEvtConstr")
     subPattern.appendChild(single)
 
-    singleText = doc.createTextNode("phEventCategory=1")
+    # Add any incident categories to the single event constraints
+    # This is used to filter the events returned by the query
+    # e.g."phEventCategory=1 AND (phIncidentCategory = 'Category1' OR phIncidentCategory = 'Category2')
+    if incidentCategories:
+        incidentCategoriesList = incidentCategories.split(',')
+        newIncidentCategoriesList = ["phIncidentCategory = '{0}'".format(i) for i in incidentCategoriesList]
+        incidentCategoryConstr = " OR ".join(newIncidentCategoriesList)
+        SingleEvtConstr = "phEventCategory=1 AND ({0})".format(incidentCategoryConstr)
+    else:
+        SingleEvtConstr = "phEventCategory=1"
+        
+    singleText = doc.createTextNode(SingleEvtConstr)
     single.appendChild(singleText)
 
     filter = doc.createElement("RelevantFilterAttr")
@@ -113,4 +124,8 @@ if __name__ == '__main__':
     print ""
     print "create_query_xml()"
     print "------------------"
-    print(create_query_xml())
+    print(create_query_xml(""))
+    print ""
+    print "create_query_xml(\"TestIncidentType\")"
+    print "------------------"
+    print(create_query_xml("TestIncidentType,AnotherTestType,OneMoreIncidentType"))

@@ -42,9 +42,15 @@
         "data_type": "password",
         "required": true
       },
+      "incidentCategories": {
+        "description": "Incident Categories (comma seperated)",
+        "order": 4,
+        "data_type": "string",
+        "required": false
+      },
       "verify_server_cert": {
         "description": "Require server certificate verification",
-        "order": 4,
+        "order": 5,
         "data_type": "boolean",
         "required": true
       }

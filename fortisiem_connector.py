@@ -41,6 +41,7 @@ class FortisiemConnector(BaseConnector):
         # combine organization and username to get fortisiem login username
         self._username = "{}/{}".format(config.get('org'), config.get('username'))
         self._password = config.get('password')
+        self._incidentCategories = config.get('incidentCategories', None)
         self._verify_server_cert = config.get('verify_server_cert', False)
 
         return phantom.APP_SUCCESS
