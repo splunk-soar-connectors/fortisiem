@@ -214,7 +214,7 @@ class FortisiemConnector(BaseConnector):
     def _get_events(self, action_result):
 
         try:
-            query = queryxml.create_query_xml()
+            query = queryxml.create_query_xml(self._incidentCategories)
 
             # Initiate query
             ret_val, text_response = self._make_rest_call(
