@@ -39,7 +39,7 @@ def create_query_xml(incidentCategories):
             </ReportInterval>
             <PatternClause window="3600">
                 <SubPattern displayName="Incidents" name="Incidents">
-                <SingleEvtConstr>phEventCategory=1 AND phIncidentCategory = << incidentCategories>> </SingleEvtConstr>
+                <SingleEvtConstr>phEventCategory=1 AND (phIncidentCategory = 'Category1' OR phIncidentCategory = 'Category2')</SingleEvtConstr>
                 </SubPattern>
             </PatternClause>
             <RelevantFilterAttr/>
@@ -98,7 +98,7 @@ def create_query_xml(incidentCategories):
 
     # Add any incident categories to the single event constraints
     # This is used to filter the events returned by the query
-    # e.g."phEventCategory=1 AND (phIncidentCategory = 'Category1' OR phIncidentCategory = 'Category2')
+    # e.g. phEventCategory=1 AND (phIncidentCategory = 'Category1' OR phIncidentCategory = 'Category2')
     if incidentCategories:
         incidentCategoriesList = incidentCategories.split(',')
         newIncidentCategoriesList = ["phIncidentCategory = '{0}'".format(i) for i in incidentCategoriesList]
@@ -106,7 +106,7 @@ def create_query_xml(incidentCategories):
         SingleEvtConstr = "phEventCategory=1 AND ({0})".format(incidentCategoryConstr)
     else:
         SingleEvtConstr = "phEventCategory=1"
-        
+
     singleText = doc.createTextNode(SingleEvtConstr)
     single.appendChild(singleText)
 
