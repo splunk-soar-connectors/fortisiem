@@ -43,7 +43,7 @@
         "required": true
       },
       "incidentCategories": {
-        "description": "Incident Categories (comma seperated)",
+        "description": "Incident Categories (Comma seperated. Leave blank to get all incidents.)",
         "order": 4,
         "data_type": "string",
         "required": false
