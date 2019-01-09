@@ -53,6 +53,12 @@
         "order": 5,
         "data_type": "boolean",
         "required": true
+      },
+      "timeWindow":{
+        "description": "Time Window (In minutes. Default value is 2 hours. )",
+        "order": 6,
+        "data_type": "numeric",
+        "required": false
       }
     },
     "actions": [

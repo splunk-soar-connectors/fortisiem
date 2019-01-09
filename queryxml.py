@@ -20,7 +20,7 @@ def create_null_discovery_request():
     return doc.toxml()
 
 
-def create_query_xml(incidentCategories):
+def create_query_xml(incidentCategories, timeWindow):
     """
     <?xml version="1.0" ?>
     <Reports>
@@ -35,7 +35,7 @@ def create_query_xml(incidentCategories):
                 <AttrList/>
             </SelectClause>
             <ReportInterval>
-                <Window unit="Minute" val="120"/>
+                <Window unit="Minute" val=timeWindow/>
             </ReportInterval>
             <PatternClause window="3600">
                 <SubPattern displayName="Incidents" name="Incidents">
@@ -83,7 +83,7 @@ def create_query_xml(incidentCategories):
     report.appendChild(reportInterval)
     window = doc.createElement("Window")
     window.setAttribute("unit", "Minute")
-    window.setAttribute("val", '120')
+    window.setAttribute("val", timeWindow)
     reportInterval.appendChild(window)
 
     pattern = doc.createElement("PatternClause")
