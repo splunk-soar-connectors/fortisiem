@@ -58,6 +58,7 @@
         "description": "Time Window (In minutes. Default value is 2 hours. )",
         "order": 6,
         "data_type": "numeric",
+        "default": 120,
         "required": false
       }
     },
