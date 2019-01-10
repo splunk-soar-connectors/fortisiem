@@ -20,7 +20,7 @@ def create_null_discovery_request():
     return doc.toxml()
 
 
-def create_query_xml(incidentCategories, timeWindow):
+def create_query_xml(incidentCategories, timeWindow, minimumSeverity):
     """
     <?xml version="1.0" ?>
     <Reports>
@@ -39,7 +39,7 @@ def create_query_xml(incidentCategories, timeWindow):
             </ReportInterval>
             <PatternClause window="3600">
                 <SubPattern displayName="Incidents" name="Incidents">
-                <SingleEvtConstr>phEventCategory=1 AND (phIncidentCategory = 'Category1' OR phIncidentCategory = 'Category2')</SingleEvtConstr>
+                <SingleEvtConstr>phEventCategory=1 AND (phIncidentCategory = 'Category1' OR phIncidentCategory = 'Category2') AND eventSeverity >= 3</SingleEvtConstr>
                 </SubPattern>
             </PatternClause>
             <RelevantFilterAttr/>
@@ -79,11 +79,12 @@ def create_query_xml(incidentCategories, timeWindow):
     attrList = doc.createElement("AttrList")
     select.appendChild(attrList)
 
+    # Set the report interval to the time window from app config
     reportInterval = doc.createElement("ReportInterval")
     report.appendChild(reportInterval)
     window = doc.createElement("Window")
     window.setAttribute("unit", "Minute")
-    window.setAttribute("val", timeWindow)
+    window.setAttribute("val", str(timeWindow))
     reportInterval.appendChild(window)
 
     pattern = doc.createElement("PatternClause")
@@ -96,16 +97,15 @@ def create_query_xml(incidentCategories, timeWindow):
     single = doc.createElement("SingleEvtConstr")
     subPattern.appendChild(single)
 
-    # Add any incident categories to the single event constraints
-    # This is used to filter the events returned by the query
-    # e.g. phEventCategory=1 AND (phIncidentCategory = 'Category1' OR phIncidentCategory = 'Category2')
+    # Filter the events returned by the query by event category and severity
+    SingleEvtConstr = "phEventCategory=1 AND eventSeverity>={0}".format(minimumSeverity)
+
+    # Turn list of incident categories into list of constraints and add to filter
     if incidentCategories:
         incidentCategoriesList = incidentCategories.split(',')
-        newIncidentCategoriesList = ["phIncidentCategory = '{0}'".format(i) for i in incidentCategoriesList]
+        newIncidentCategoriesList = ["phIncidentCategory='{0}'".format(i) for i in incidentCategoriesList]
         incidentCategoryConstr = " OR ".join(newIncidentCategoriesList)
-        SingleEvtConstr = "phEventCategory=1 AND ({0})".format(incidentCategoryConstr)
-    else:
-        SingleEvtConstr = "phEventCategory=1"
+        SingleEvtConstr = "{0} AND ({1})".format(SingleEvtConstr, incidentCategoryConstr)
 
     singleText = doc.createTextNode(SingleEvtConstr)
     single.appendChild(singleText)
@@ -124,8 +124,5 @@ if __name__ == '__main__':
     print ""
     print "create_query_xml()"
     print "------------------"
-    print(create_query_xml(""))
     print ""
-    print "create_query_xml(\"TestIncidentType\")"
-    print "------------------"
-    print(create_query_xml("TestIncidentType,AnotherTestType,OneMoreIncidentType"))
+    print(create_query_xml("TestIncidentType,AnotherTestType,OneMoreIncidentType", 60, 7))
