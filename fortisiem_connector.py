@@ -44,6 +44,7 @@ class FortisiemConnector(BaseConnector):
         self._incidentCategories = config.get('incidentCategories', None)
         self._verify_server_cert = config.get('verify_server_cert', False)
         self._timeWindow = config.get('timeWindow')
+        self._minimumSeverity = config.get('minimumSeverity')
 
         return phantom.APP_SUCCESS
 
@@ -215,7 +216,7 @@ class FortisiemConnector(BaseConnector):
     def _get_events(self, action_result):
 
         try:
-            query = queryxml.create_query_xml(self._incidentCategories, self._timeWindow)
+            query = queryxml.create_query_xml(self._incidentCategories, self._timeWindow, self._minimumSeverity)
 
             # Initiate query
             ret_val, text_response = self._make_rest_call(

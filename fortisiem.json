@@ -59,6 +59,12 @@
         "order": 6,
         "data_type": "numeric",
         "required": false
+      },
+      "minimumSeverity":{
+        "description": "Minimum Event Severity (Set to 0 to get all events)",
+        "order": 7,
+        "data_type": "numeric",
+        "required": false
       }
     },
     "actions": [
