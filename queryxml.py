@@ -84,7 +84,7 @@ def create_query_xml(incidentCategories, timeWindow, minimumSeverity):
     report.appendChild(reportInterval)
     window = doc.createElement("Window")
     window.setAttribute("unit", "Minute")
-    window.setAttribute("val", timeWindow)
+    window.setAttribute("val", str(timeWindow))
     reportInterval.appendChild(window)
 
     pattern = doc.createElement("PatternClause")
