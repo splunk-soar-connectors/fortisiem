@@ -42,17 +42,17 @@
         "data_type": "password",
         "required": true
       },
-      "incidentCategories": {
-        "description": "Incident Categories (Comma seperated. Leave blank to get all incidents.)",
-        "order": 4,
-        "data_type": "string",
-        "required": false
-      },
       "verify_server_cert": {
         "description": "Require server certificate verification",
-        "order": 5,
+        "order": 4,
         "data_type": "boolean",
         "required": true
+      },
+      "incidentCategories": {
+        "description": "Incident Categories (Comma seperated. Leave blank to get all incidents.)",
+        "order": 5,
+        "data_type": "string",
+        "required": false
       },
       "timeWindow":{
         "description": "Time Window (In minutes. Default value is 2 hours. )",
@@ -64,6 +64,7 @@
         "description": "Minimum Event Severity (Set to 0 to get all events)",
         "order": 7,
         "data_type": "numeric",
+        "value_list": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         "required": false
       }
     },
