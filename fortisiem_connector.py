@@ -42,7 +42,7 @@ class FortisiemConnector(BaseConnector):
         self._username = "{}/{}".format(config.get('organization'), config.get('username'))
         self._password = config.get('password')
         self._incidentCategories = config.get('incidentCategories', None)
-        self._verify_server_cert = config.get('verify_server_cert', False)
+        self._verifyServerCert = config.get('verifyServerCert', False)
         self._timeWindow = config.get('timeWindow')
         self._minimumSeverity = config.get('minimumSeverity')
 
@@ -181,7 +181,7 @@ class FortisiemConnector(BaseConnector):
                             auth=(self._username, self._password),
                             data=body,
                             headers=headers,
-                            verify=self._verify_server_cert)
+                            verify=self._verifyServerCert)
         except Exception as e:
             return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(str(e))), None)
 

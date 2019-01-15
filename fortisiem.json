@@ -42,7 +42,7 @@
         "data_type": "password",
         "required": true
       },
-      "verify_server_cert": {
+      "verifyServerCert": {
         "description": "Require server certificate verification",
         "order": 4,
         "data_type": "boolean",
