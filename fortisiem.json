@@ -46,7 +46,7 @@
         "description": "Require server certificate verification",
         "order": 4,
         "data_type": "boolean",
-        "required": true
+        "required": false
       },
       "incidentCategories": {
         "description": "Incident Categories (Comma seperated. Leave blank to get all incidents.)",
