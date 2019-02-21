@@ -1,0 +1,148 @@
+{
+    "appid": "76e8f71b-753c-4f3f-a6a9-89daed7077e0",
+    "name": "FortiSIEM",
+    "description": "Integration with Fortinet's FortiSIEM: Powerful Security Information and Event Management. Rapid detection and remediation of security events. Security, performance, and compliance management",
+    "type": "siem",
+    "product_vendor": "Fortinet",
+    "logo": "fortisiem.png",
+    "logo_dark": "fortisiem_dark.png",
+    "product_name": "FortiSIEM",
+    "product_version_regex": ".*",
+    "publisher": "Armature Systems",
+    "license": "Copyright (c) Armature Systems, 2018",
+    "app_version": "1.0.0",
+    "utctime_updated": "2018-04-02T22:14:47.200504Z",
+    "package_name": "phantom_fortisiem",
+    "main_module": "fortisiem_connector.pyc",
+    "min_phantom_version": "3.5.180",
+    "app_wizard_version": "1.0.0",
+    "configuration": {
+      "server": {
+          "description": "IP/Hostname",
+          "data_type": "string",
+          "order": 0,
+          "required": true
+      },
+      "organization": {
+        "description": "Organization",
+        "order": 1,
+        "data_type": "string",
+        "default": "super",
+        "required": true
+      },
+      "username": {
+        "description": "Username",
+        "order": 2,
+        "data_type": "string",
+        "required": true
+      },
+      "password": {
+        "description": "Password",
+        "order": 3,
+        "data_type": "password",
+        "required": true
+      },
+      "verifyServerCert": {
+        "description": "Require server certificate verification",
+        "order": 4,
+        "data_type": "boolean",
+        "required": false
+      },
+      "incidentCategories": {
+        "description": "Incident Categories (Comma seperated. Leave blank to get all incidents.)",
+        "order": 5,
+        "data_type": "string",
+        "required": false
+      },
+      "timeWindow":{
+        "description": "Time Window (In minutes. Default value is 2 hours. )",
+        "order": 6,
+        "data_type": "numeric",
+        "default": 120,
+        "required": false
+      },
+      "minimumSeverity":{
+        "description": "Minimum Event Severity (Set to 0 to get all events)",
+        "order": 7,
+        "data_type": "numeric",
+        "value_list": ["0", "1", "2"],
+        "default": 0,
+        "required": true
+      }
+    },
+    "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_connectivity",
+            "description": "Validate the asset configuration for connectivity using supplied configuration",
+            "verbose": "",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "on poll",
+            "identifier": "on_poll",
+            "description": "Callback action for the on_poll ingest functionality",
+            "verbose": "",
+            "type": "ingest",
+            "read_only": true,
+            "parameters": {
+                "container_id": {
+                    "description": "Container IDs to limit the ingestion to",
+                    "data_type": "string",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 0
+                },
+                "start_time": {
+                    "description": "Start of time range, in epoch time (milliseconds)",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 1
+                },
+                "end_time": {
+                    "description": "End of time range, in epoch time (milliseconds)",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 2
+                },
+                "container_count": {
+                    "description": "Maximum number of container records to query for.",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 3
+                },
+                "artifact_count": {
+                    "description": "Maximum number of artifact records to query for.",
+                    "data_type": "numeric",
+                    "required": false,
+                    "primary": false,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "",
+                    "order": 4
+                }
+            },
+            "output": [],
+            "versions": "EQ(*)"
+        }
+    ]
+}
