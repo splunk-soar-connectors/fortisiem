@@ -1,7 +1,7 @@
 {
     "appid": "76e8f71b-753c-4f3f-a6a9-89daed7077e0",
     "name": "FortiSIEM",
-    "description": "Integration with Fortinet's FortiSIEM: Powerful Security Information and Event Management. Rapid detection and remediation of security events. Security, performance, and compliance management",
+    "description": "This app implements powerful security, performance, compliance, information and event management. It provides rapid detection and remediation of security events",
     "type": "siem",
     "product_vendor": "Fortinet",
     "logo": "logo_fortisiem.svg",
@@ -121,7 +121,7 @@
                     "order": 2
                 },
                 "container_count": {
-                    "description": "Maximum number of container records to query for.",
+                    "description": "Maximum number of container records to query for",
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
@@ -131,7 +131,7 @@
                     "order": 3
                 },
                 "artifact_count": {
-                    "description": "Maximum number of artifact records to query for.",
+                    "description": "Maximum number of artifact records to query for",
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
