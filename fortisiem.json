@@ -4,17 +4,17 @@
     "description": "Integration with Fortinet's FortiSIEM: Powerful Security Information and Event Management. Rapid detection and remediation of security events. Security, performance, and compliance management",
     "type": "siem",
     "product_vendor": "Fortinet",
-    "logo": "fortisiem.png",
-    "logo_dark": "fortisiem_dark.png",
+    "logo": "logo_fortisiem.svg",
+    "logo_dark": "logo_fortisiem_dark.svg",
     "product_name": "FortiSIEM",
     "product_version_regex": ".*",
     "publisher": "Armature Systems",
-    "license": "Copyright (c) Armature Systems, 2018",
+    "license": "Copyright (c) Armature Systems, 2019",
     "app_version": "1.0.0",
     "utctime_updated": "2018-04-02T22:14:47.200504Z",
     "package_name": "phantom_fortisiem",
     "main_module": "fortisiem_connector.pyc",
-    "min_phantom_version": "3.5.180",
+    "min_phantom_version": "4.0.1068",
     "app_wizard_version": "1.0.0",
     "configuration": {
       "server": {
@@ -49,13 +49,13 @@
         "required": false
       },
       "incidentCategories": {
-        "description": "Incident Categories (Comma seperated. Leave blank to get all incidents.)",
+        "description": "Incident Categories (Comma separated. Leave blank to get all incidents)",
         "order": 5,
         "data_type": "string",
         "required": false
       },
       "timeWindow":{
-        "description": "Time Window (In minutes. Default value is 2 hours. )",
+        "description": "Time Window (In minutes. Default value is 2 hours)",
         "order": 6,
         "data_type": "numeric",
         "default": 120,

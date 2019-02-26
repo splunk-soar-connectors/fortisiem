@@ -225,6 +225,11 @@ class FortisiemConnector(BaseConnector):
                             action_result=action_result,
                             body=query,
                             content_type="text/xml")
+
+            if (phantom.is_fail(ret_val)):
+                action_result.set_status(phantom.APP_ERROR, 'Error occurred while initiating the event query')
+                return None
+
             queryId = text_response
 
             # Check query progress
@@ -235,6 +240,11 @@ class FortisiemConnector(BaseConnector):
                             method="get",
                             endpoint="phoenix/rest/query/progress/{0}".format(queryId),
                             action_result=action_result)
+
+                if phantom.is_fail(ret_val):
+                    action_result.set_status(phantom.APP_ERROR, 'Error occurred while fetching the event query progress')
+                    return None
+
                 progress = int(text_response)
 
             # Keep fetching events until all queried events have been returned
@@ -252,6 +262,10 @@ class FortisiemConnector(BaseConnector):
                                 method="get",
                                 endpoint="phoenix/rest/query/events/{0}/{1}/{2}".format(queryId, first_event, last_event),
                                 action_result=action_result)
+
+                if phantom.is_fail(ret_val):
+                    action_result.set_status(phantom.APP_ERROR, 'Error occurred while fetching the events in XML format')
+                    return None
 
                 # Convert xml response into a list of events
                 # Each event is a dictionary of attributes
@@ -291,6 +305,10 @@ class FortisiemConnector(BaseConnector):
         # Get events from the FortiSIEM and process them as Phantom containers
         try:
             events = self._get_events(action_result)
+
+            if events is None:
+                return action_result.get_status()
+
             for event in events:
 
                 # Map attributes returned from FortiSIEM into Common Event Format (cef)
@@ -391,9 +409,10 @@ if __name__ == '__main__':
         password = getpass.getpass("Password: ")
 
     if (username and password):
+        login_url = BaseConnector._get_phantom_base_url() + "login"
         try:
             print ("Accessing the Login page")
-            r = requests.get("https://127.0.0.1/login", verify=False)
+            r = requests.get(login_url, verify=False)
             csrftoken = r.cookies['csrftoken']
 
             data = dict()
@@ -403,10 +422,10 @@ if __name__ == '__main__':
 
             headers = dict()
             headers['Cookie'] = 'csrftoken=' + csrftoken
-            headers['Referer'] = 'https://127.0.0.1/login'
+            headers['Referer'] = login_url
 
             print ("Logging into Platform to get the session id")
-            r2 = requests.post("https://127.0.0.1/login", verify=False, data=data, headers=headers)
+            r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies['sessionid']
         except Exception as e:
             print ("Unable to get session id from the platfrom. Error: " + str(e))
