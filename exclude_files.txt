@@ -1,2 +1,4 @@
 *.py
 .git*
+.DS_Store
+test_json/*
