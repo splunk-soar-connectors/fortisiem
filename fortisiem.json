@@ -65,7 +65,7 @@
         "description": "Minimum Event Severity (Set to 0 to get all events)",
         "order": 7,
         "data_type": "numeric",
-        "value_list": ["0", "1", "2"],
+        "value_list": [0, 1, 2],
         "default": 0,
         "required": true
       }
@@ -75,7 +75,6 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -86,7 +85,6 @@
             "action": "on poll",
             "identifier": "on_poll",
             "description": "Callback action for the on_poll ingest functionality",
-            "verbose": "",
             "type": "ingest",
             "read_only": true,
             "parameters": {
@@ -95,9 +93,6 @@
                     "data_type": "string",
                     "required": false,
                     "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 0
                 },
                 "start_time": {
@@ -105,9 +100,6 @@
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 1
                 },
                 "end_time": {
@@ -115,9 +107,6 @@
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 2
                 },
                 "container_count": {
@@ -125,9 +114,6 @@
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 3
                 },
                 "artifact_count": {
@@ -135,9 +121,6 @@
                     "data_type": "numeric",
                     "required": false,
                     "primary": false,
-                    "contains": [],
-                    "value_list": [],
-                    "default": "",
                     "order": 4
                 }
             },
